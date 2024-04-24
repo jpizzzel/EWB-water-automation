@@ -5,9 +5,13 @@
 using namespace std;
 
 int main(){
-    PlantList plants;
-    while(1)
-        commandLine();
+    PlantList plants = PlantList(5);
+    // while(1)
+    //     commandLine();
+    // plants.storeState();
+    // plants.createPreset();
+    plants.createPlant();
+    plants.displayPlants();
 
     return 0;
 }

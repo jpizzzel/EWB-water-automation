@@ -14,19 +14,26 @@
 #define WATER
 
 #include <iostream>
+#include <list>
+#include <vector>
 
 using namespace std;
 
 class PlantList{
 public:
+    PlantList();
+    PlantList(int cubeNum);
+    ~PlantList();
     void commandLine();
     void createPreset();
+    void deletePreset();
 
     void createPlant();
     void createPlantFromPreset();
     void deletePlant();
 
     void displayPlants();
+    void displayPresets();
 
     void swapPlants();
     void movePlant();
@@ -34,28 +41,29 @@ public:
 
     void changeName();
     void changeFeedAmount();
-    void changeFeedFreqeuency();
-    void changeFeedingList();
-    void changeMoisture();
-    void changeFeedList();
+    void changeFeedFrequency();
+    // void changeFeedingList();
+    // void changeMoisture();
+    // void changeFeedList();
+    
+    struct Plant{
+        int cubeNo;
+        string name;
+        float waterAmt;           //water per feeding (ml)
+        float frequency;          //days
+        float idealMoisture;    //ideal moisture level at feeding
+        int hoursSinceFeed; 
+        int feedingsTillAdult;
+        float adultWaterAmt;
+    };
 
 private:
 
     void storePreset();
     void storeState();
 
-    struct Plant{
-        string name;
-        int cubeNo;               
-        float waterAmt;           //water per feeding (ml)
-        float frequency;          //days
-        float idealMoisture;    //ideal moisture level at feeding
-        int hoursSinceFeed; 
-        int feedingsTillAdult;
-        float eventualWaterAmt;
-    };
-
-    Plant* plants;
+    list<string> presetNames;
+    vector<Plant> plants;
     int numCubes;
 };
 
